@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Search PokéAPI and explore Pokémon information with GSAP animations.">
+
+    <title>PokéScope | Pokémon Explorer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- GSAP supplies the required animation-library functionality. -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <div class="page-shell">
+
+      <!-- Site header -->
+      <header class="site-header">
+        <a class="brand" href="#main-content" aria-label="PokéScope home">
+          <span class="brand-mark" aria-hidden="true">
+            <span class="brand-mark-center"></span>
+          </span>
+
+          <span>PokéScope</span>
+        </a>
+
+        <a class="api-link" href="https://pokeapi.co/docs/v2" target="_blank" rel="noreferrer">
+          Powered by PokéAPI
+          <span aria-hidden="true">↗</span>
+        </a>
+      </header>
+
+
+      <!-- Introductory content and search controls -->
+      <main id="main-content">
+        <section class="hero" aria-labelledby="page-title">
+          <div class="hero-copy">
+            <p class="eyebrow">Interactive field guide</p>
+            <h1 id="page-title">Discover your next <span>favorite Pokémon.</span></h1>
+            <p class="hero-description">
+              Search by name or Pokédex number to explore artwork, types, abilities,
+              measurements, and base statistics retrieved live from PokéAPI.
+            </p>
+          </div>
+
+          <div class="search-panel">
+            <form id="pokemon-form" class="search-form" novalidate>
+              <label for="pokemon-search">Pokémon name or number</label>
+
+              <div class="search-row">
+                <input
+                  id="pokemon-search"
+                  name="pokemon"
+                  type="search"
+                  placeholder="Try Pikachu or 25"
+                  autocomplete="off"
+                  required
+                >
+
+                <button class="primary-button" type="submit">
+                  Search
+                </button>
+              </div>
+            </form>
+
+            <div class="search-actions">
+              <p>Need inspiration?</p>
+
+              <button id="random-button" class="text-button" type="button">
+                Surprise me
+                <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- Live API status messages -->
+        <div id="status-message" class="status-message" role="status" aria-live="polite"></div>
+
+
+        <!-- Pokémon data returned by the API -->
+        <section id="pokemon-card" class="pokemon-card" aria-labelledby="pokemon-name" hidden>
+          <div class="artwork-panel">
+            <div class="artwork-decoration artwork-decoration-one" aria-hidden="true"></div>
+            <div class="artwork-decoration artwork-decoration-two" aria-hidden="true"></div>
+
+            <p id="pokemon-number" class="pokemon-number">#025</p>
+
+            <img id="pokemon-image" class="pokemon-image" src="" alt="">
+
+            <p class="image-caption">Official artwork</p>
+          </div>
+
+          <div class="details-panel">
+            <div class="pokemon-heading">
+              <div>
+                <p class="section-label">Pokédex profile</p>
+                <h2 id="pokemon-name">Pikachu</h2>
+              </div>
+
+              <div id="pokemon-types" class="type-list" aria-label="Pokémon types"></div>
+            </div>
+
+
+            <dl class="measurement-grid">
+              <div>
+                <dt>Height</dt>
+                <dd id="pokemon-height">0.4 m</dd>
+              </div>
+
+              <div>
+                <dt>Weight</dt>
+                <dd id="pokemon-weight">6.0 kg</dd>
+              </div>
+
+              <div>
+                <dt>Abilities</dt>
+                <dd id="pokemon-abilities">Static</dd>
+              </div>
+            </dl>
+
+
+            <section class="stats-section" aria-labelledby="stats-title">
+              <div class="section-heading">
+                <h3 id="stats-title">Base statistics</h3>
+                <span>out of 255</span>
+              </div>
+
+              <div id="stats-list" class="stats-list"></div>
+            </section>
+          </div>
+        </section>
+      </main>
+
+
+      <!-- Site footer -->
+      <footer class="site-footer">
+        <p>Live Pokémon data, thoughtfully presented.</p>
+        <p>API data may change as PokéAPI is updated.</p>
+      </footer>
+    </div>
+  </body>
+</html>
